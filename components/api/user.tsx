@@ -1,9 +1,10 @@
+const token = typeof window !== "undefined" ? window.localStorage.getItem("token") : false
 
 export const fetchAllUser = async(name: string, role: string) => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_PREFIX_PATH}/user?name=${name}&role=${role}`, {
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + localStorage.getItem("token")
+            "Authorization": "Bearer " + token
         }
     })
     if (res.ok){
@@ -18,7 +19,7 @@ export const fetchUserById = async(userId:any) => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_PREFIX_PATH}/user/${userId}`, {
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + localStorage.getItem("token")
+            "Authorization": "Bearer " + token
         }
     })
     if (res.ok){
@@ -35,7 +36,7 @@ export const addUser = async(state:any) => {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + localStorage.getItem("token") 
+            "Authorization": "Bearer " + token
         },
         body: JSON.stringify(state)
     })
@@ -52,7 +53,7 @@ export const updateUser = async(userId:any, state:any) => {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + localStorage.getItem("token") 
+            "Authorization": "Bearer " + token
         },
         body: JSON.stringify(state)
     })
@@ -69,7 +70,7 @@ export const deleteUser = async(userId:any) => {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + localStorage.getItem("token") 
+            "Authorization": "Bearer " + token
         }
     })
     if (res.ok){

@@ -1,7 +1,10 @@
 import { Pagination, getDefaultPagination } from "@/utils/pagination";
 
-export const fetchAllAttendance = async(name: string = "", date: string = "", pagination?: Partial<Pagination>) => {
-    const role = localStorage.getItem("role")?.toLowerCase()
+
+const token = typeof window !== "undefined" ? window.localStorage.getItem("token") : false
+const role = typeof window !== "undefined" ? window.localStorage.getItem("role")?.toLowerCase() : false
+
+export const fetchAllAttendance = async(name: string = "", date: string = "", pagination?: Partial<Pagination>) => {    
     const { sortby, size, page, order } = getDefaultPagination(pagination)
     let res: any
     switch(role){
@@ -9,14 +12,14 @@ export const fetchAllAttendance = async(name: string = "", date: string = "", pa
             res = await fetch(`${process.env.NEXT_PUBLIC_PREFIX_PATH}/admin/attendance?name=${name}&date=${date}&sortby=${sortby}&size=${size}&page=${page}&order=${order}`, {
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": "Bearer " + localStorage.getItem("token")
+                    "Authorization": "Bearer " + token
                 }
             })
         case "employee":
             res = await fetch(`${process.env.NEXT_PUBLIC_PREFIX_PATH}/attendance?name=${name}&date=${date}&sortby=${sortby}&size=${size}&page=${page}&order=${order}`, {
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": "Bearer " + localStorage.getItem("token")
+                    "Authorization": "Bearer " + token
                 }
             })
 
@@ -34,7 +37,7 @@ export const fetchAttendanceById = async(attendanceId:any) => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_PREFIX_PATH}/user/${attendanceId}`, {
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + localStorage.getItem("token")
+            "Authorization": "Bearer " + token
         }
     })
     if (res.ok){
@@ -52,7 +55,7 @@ export const addAttendance = async(state: string) => {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + localStorage.getItem("token") 
+            "Authorization": "Bearer " + token
         }
     })
     if (res.ok) {
@@ -68,7 +71,7 @@ export const deleteAttendance = async(attendanceId:any) => {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": "Bearer " + localStorage.getItem("token") 
+            "Authorization": "Bearer " + token
         }
     })
     if (res.ok){

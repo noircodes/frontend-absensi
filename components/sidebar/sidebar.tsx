@@ -17,7 +17,7 @@ import { usePathname } from "next/navigation";
 export const SidebarWrapper = () => {
   const pathname = usePathname();
   const { collapsed, setCollapsed } = useSidebarContext();
-  const role = localStorage.getItem("role")?.toLowerCase();
+  const role = typeof window !== "undefined" ? window.localStorage.getItem("role")?.toLowerCase() : false;
 
   return (
     <aside className="h-screen z-[202] sticky top-0">
