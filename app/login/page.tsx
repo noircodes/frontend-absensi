@@ -1,8 +1,8 @@
-import React from 'react';
-import {LoginPage} from '@/components/login';
+import type { NextPage } from "next";
+import {Login} from '@/components/login';
 
-const loginPage = () => {
-   return <LoginPage />;
+const LoginPage: NextPage = () => {
+   return <Login />;
 };
 
-export default loginPage;
+export default LoginPage;

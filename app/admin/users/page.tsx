@@ -1,8 +1,11 @@
-import React from 'react';
+import type { NextPage } from "next";
 import {Users} from '@/components/users';
 
-const accounts = () => {
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
+
+const UserPage : NextPage = () => {
    return <Users />;
 };
 
-export default accounts;
+export default UserPage;

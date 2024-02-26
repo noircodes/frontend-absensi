@@ -7,7 +7,7 @@ import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation"
 
-export const LoginPage = () => {
+export const Login = () => {
     const router = useRouter()
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");

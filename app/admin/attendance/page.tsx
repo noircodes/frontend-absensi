@@ -1,8 +1,11 @@
-import React from 'react';
+import type { NextPage } from "next";
 import { Attendance } from '@/components/attendance';
 
-const attendance = () => {
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
+
+const AdminAttendancePage : NextPage = () => {
    return <Attendance />;
 };
 
-export default attendance;
+export default AdminAttendancePage;
